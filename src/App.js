@@ -9,7 +9,7 @@ import { AuthContext } from "./shared/context/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import LoadingSpinner from "./shared/components/UIElements/LoadingSpinner";
-require("dotenv").config();
+
 //import Users from "./user/pages/Users";
 //import Home from "./home/pages/Home";
 //import Auth from "./user/pages/Auth";
