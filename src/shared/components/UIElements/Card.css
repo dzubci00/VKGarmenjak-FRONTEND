@@ -8,10 +8,6 @@
   height: 20rem;
 }
 
-.user-item__content:hover {
-  transform: scale(1.05);
-}
-
 .authentication {
   height: auto;
 }
@@ -40,4 +36,11 @@
 
 .training-item__content {
   height: auto;
+}
+
+/* 🖥️ Desktop */
+@media (min-width: 992px) {
+  .user-item__content:hover {
+    transform: scale(1.05);
+  }
 }
