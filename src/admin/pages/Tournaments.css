@@ -1,0 +1,30 @@
+.admin-tournament-wrapper {
+  background-image: url("../../../public/images/background2.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #666666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 4rem;
+}
+
+.admin-panel-tournaments {
+  width: 90%;
+  gap: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+/* 📱 Tableti */
+@media (min-width: 768px) {
+}
+
+/* 🖥️ Desktop */
+@media (min-width: 992px) {
+  .admin-panel {
+  }
+}

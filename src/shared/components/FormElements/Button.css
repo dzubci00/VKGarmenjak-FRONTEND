@@ -1,0 +1,102 @@
+.button {
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #ef8800;
+  color: white;
+  cursor: pointer;
+  /*  margin-right: 1rem; */
+  text-decoration: none;
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover,
+.button:active {
+  background: #ffb14a;
+}
+
+.button--inverse {
+  background: transparent;
+  color: #ef8800;
+}
+
+.button--inverse:hover,
+.button--inverse:active {
+  color: white;
+  background: #ef8800;
+}
+
+.button--join {
+  background: #ef8800;
+  color: white;
+  border-color: #ccc;
+}
+
+.button--player {
+  background: transparent;
+  color: #ef8800;
+  margin-left: 0;
+  border-color: #ccc;
+}
+
+.button--player:hover,
+.button--player:active {
+  color: white;
+  background: #ef8800;
+}
+
+.button--forma {
+  background: #ef8800;
+  color: white;
+  margin: 0;
+  border-color: #ccc;
+}
+
+.button--forma:hover,
+.button--forma:active {
+  color: white;
+  background: #ffb14a;
+}
+
+.button--join:hover,
+.button--join:active {
+  color: white;
+  background: #ffb14a;
+  border-color: #ccc;
+}
+
+.button--danger {
+  background: #830000;
+  border-color: #830000;
+}
+
+.button--danger:hover,
+.button--danger:active {
+  background: #f34343;
+  border-color: #f34343;
+}
+
+.button:disabled,
+.button:hover:disabled,
+.button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button--small {
+  font-size: 0.7rem;
+  /*  margin: 0;
+  margin-left: 0.5rem; */
+}
+
+.button--big {
+  font-size: 1.5rem;
+}

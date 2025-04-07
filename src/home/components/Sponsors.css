@@ -1,0 +1,38 @@
+.sponsors {
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #f4f4f4;
+}
+
+.sponsors-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.sponsors-grid a img {
+  width: 120px;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sponsors-grid a:hover img {
+  transform: scale(1.1);
+}
+
+.swiper-slide a img {
+  width: 150px;
+  height: auto;
+}
+
+.sponzor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

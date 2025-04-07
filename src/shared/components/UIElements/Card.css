@@ -1,0 +1,43 @@
+.card {
+  position: relative;
+  margin: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow: hidden;
+  height: 20rem;
+}
+
+.user-item__content:hover {
+  transform: scale(1.05);
+}
+
+.authentication {
+  height: auto;
+}
+
+.even {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.odd {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.player-list-item__content {
+  height: auto;
+  padding: 3px;
+  min-width: 220px;
+  max-width: 250px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.training-item__content {
+  height: auto;
+}

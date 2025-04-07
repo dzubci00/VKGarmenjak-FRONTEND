@@ -1,0 +1,189 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
+
+:root {
+  --primary-font: "Open Sans", sans-serif;
+  --secondary-font: "Arial", sans-serif;
+  --white-color: white;
+  --primary-color: #001f3f; /* Tamnoplava */
+  --secondary-color: #facc15; /* Žuta */
+  --headers-color: #001f3f;
+  --text-color: #333; /* Tamnosiva */
+  --background-color: #f9fafb; /* Svijetlosiva */
+}
+
+* {
+  font-family: "Open Sans", sans-serif !important;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--primary-font);
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+body {
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* 🎭 Animacije */
+.slide-in-left-enter {
+  transform: translateX(-100%);
+}
+
+.slide-in-left-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.slide-in-left-exit {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.slide-in-left-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 200ms;
+}
+
+/* 🔹 Centriranje */
+.center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* 🎨 Tipografija */
+/* Mobile-first */
+h1 {
+  font-size: 2rem; /* 32px */
+  font-weight: 700;
+  color: var(--white-color);
+}
+
+h2 {
+  font-size: 1.75rem; /* 28px */
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 500;
+  /*  color: var(--headers-color); */
+}
+
+h4 {
+  font-size: 1.4rem; /* 24px */
+  font-weight: 500;
+  color: var(--headers-color);
+}
+
+p {
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+}
+
+a {
+  /* color: var(--primary-color); */
+  /* font-size: 1.4rem; */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  /* color: var(--secondary-color); */
+}
+
+/* 📱 Tableti */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem; /* 40px */
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+  h4 {
+    font-size: 1.4rem;
+  }
+  p {
+    font-size: 1.125rem; /* 18px */
+  }
+}
+
+/* 🖥️ Desktop */
+@media (min-width: 992px) {
+  h1 {
+    font-size: 3rem; /* 48px */
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 1.25rem; /* 20px */
+  }
+}
+
+/* 🛠️ Dugmad */
+button {
+  font-size: 1rem;
+  font-weight: 600;
+  /* padding: 10px 20px; */
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* button:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.05);
+} */
+
+/* 📸 Stilovi za slike */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  /* border-radius: 5px; */
+}
+
+/* 📦 Kartice */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+/* 📄 Footer */
+/* footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+footer p {
+  font-size: 0.9rem;
+} */

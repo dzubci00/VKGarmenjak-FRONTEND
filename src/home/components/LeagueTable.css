@@ -1,0 +1,50 @@
+.league-table {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.table-container {
+  margin-top: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+th {
+  background-color: #222;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}
+
+/* 📱 Tableti */
+@media (min-width: 768px) {
+}
+
+/* 🖥️ Desktop */
+@media (min-width: 992px) {
+  .league-table {
+    width: 90%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

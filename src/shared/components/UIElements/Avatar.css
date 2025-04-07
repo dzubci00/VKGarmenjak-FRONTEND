@@ -1,0 +1,21 @@
+.avatar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar img,
+.avatar .lazy-load-image-background {
+  display: block;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.userprofile img,
+.userprofile .lazy-load-image-background {
+  border-radius: 10px;
+}

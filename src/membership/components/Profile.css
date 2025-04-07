@@ -1,0 +1,132 @@
+.profile-wraper {
+  list-style: none;
+  margin: 0 auto;
+  padding: 5rem 20px;
+  background-image: url("C:\Users\donat\Documents\VisualCode\VK Garmenjak\frontend\public\images\background2.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #666666;
+  min-height: 100vh;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  text-align: center;
+}
+
+.profile {
+  margin-right: 20px;
+}
+
+.statistika {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.statistika h3 {
+  margin-bottom: 10px;
+}
+
+.notifications {
+  background: #fff564;
+  color: #333;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.notifications h3 {
+  margin: 0 0 10px;
+}
+
+.notifications ul {
+  padding: 0;
+  list-style: none;
+}
+
+.notifications li {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.membership-barcode {
+  margin: 3rem 0;
+}
+
+.membership-barcode h3 {
+  color: white;
+}
+
+.membership {
+  padding: 20px;
+  height: 100vh;
+  background-color: #666666b9;
+}
+
+.membership-table {
+  padding-top: 30px;
+  padding-bottom: 0px;
+}
+
+.membership-top {
+  margin-bottom: 20px;
+}
+
+.membership-top h3,
+.membership-top p {
+  margin: 0px;
+}
+
+.membership-barcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.name-surname-mail h3 {
+  margin: 0;
+}
+
+.name-surname-mail h4 {
+  margin: 0;
+}
+
+/* 📱 Tableti */
+@media (min-width: 768px) {
+  .top {
+    align-items: flex-start;
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .membership-table {
+    padding-top: 40px;
+  }
+
+  .notifications li {
+    font-size: 1.125rem; /* 18px */
+  }
+}
+
+/* 🖥️ Desktop */
+@media (min-width: 992px) {
+  .notifications li {
+    font-size: 1.25rem; /* 20px */
+  }
+}

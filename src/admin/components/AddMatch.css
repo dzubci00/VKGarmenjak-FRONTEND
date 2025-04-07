@@ -1,0 +1,43 @@
+.statistika-igraca {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.statistika-igraca button {
+  width: 80px;
+  margin: 0px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.dugmici .button--player {
+  margin: 0px;
+}
+
+/* 📱 Tableti */
+@media (min-width: 768px) {
+  .statistika-igraca {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  /* .statistika-igraca button {
+    margin: 0px;
+  } */
+}
+
+/* 🖥️ Desktop */
+@media (min-width: 992px) {
+  .statistika-igraca button {
+    width: auto;
+    margin: 0px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}

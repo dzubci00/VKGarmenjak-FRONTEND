@@ -1,0 +1,66 @@
+.wrap-training {
+  background-image: url("../../../public/images/background2.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #666666;
+  /* height: 100vh; */
+  padding-top: 3.5rem;
+  min-height: 100vh;
+}
+
+.training-container {
+  max-width: 600px;
+  margin: auto;
+  padding-bottom: 20px;
+  text-align: center;
+  /* background-image: url('../../../public/images/background2.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #666666; */
+}
+
+.training-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.training-list {
+  list-style: none;
+  padding: 0;
+}
+
+.training-li {
+  /* background: #f4f4f4; */
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.content {
+  /*  margin-bottom: 10px; */
+}
+
+.prijavljeni-igraci-ul {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prijavljeni-igraci-ul {
+  padding: 0;
+  list-style: none;
+}
+
+h4 {
+  margin-bottom: 0;
+}
+
+.training-container h2 {
+  color: #020659;
+  margin-bottom: 0px;
+}

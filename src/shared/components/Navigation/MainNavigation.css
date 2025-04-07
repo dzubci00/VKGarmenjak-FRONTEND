@@ -1,0 +1,152 @@
+.main-header {
+  justify-content: space-between;
+}
+
+.main-navigation__menu-btn {
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+.hide-logo {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.main-navigation__menu-btn span {
+  display: block;
+  width: 3rem;
+  height: 2.5px;
+  background: #001f3f;
+}
+
+.main-navigation__menu-btn svg {
+  color: #001f3f;
+}
+
+.main-navigation__title {
+  /* display: none; */
+  font-size: 1.1rem;
+  background: linear-gradient(
+    to right,
+    #001f3f,
+    #378baf
+  ); /* Tamno plava → Bijela */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-navigation__title a {
+  text-decoration: none;
+  color: #001f3f;
+}
+
+/* .title-logo{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+
+} */
+
+.main-navigation__header-nav {
+  display: none;
+}
+
+.main-navigation__drawer-nav {
+  height: 100%;
+}
+
+.title-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* position: relative; */
+}
+
+.main-navigation__logo-container {
+  position: absolute;
+  top: 100%; /* Postavlja ga na sredinu headera */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Pomera ga centrirano */
+  background-color: #bdbcbc; /* Postavi boju pozadine da se uklopi sa dizajnom */
+  border-radius: 50%;
+  width: 80px; /* Prilagodi veličinu logotipa */
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */ /* Blagi senka efekat */
+}
+
+.main-navigation__logo {
+  width: 90%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .main-navigation__title {
+    font-size: 1.6rem;
+  }
+
+  .main-navigation__menu-btn {
+    /* display: none; */
+  }
+
+  .main-navigation__header-nav {
+    /* display: block; */
+  }
+
+  .main-navigation__title {
+    /*  display: block; */
+  }
+
+  .main-navigation__logo-container {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+  .main-navigation__menu-btn {
+    /* display: none; */
+  }
+
+  .main-navigation__header-nav {
+    /*  display: block; */
+  }
+
+  .main-navigation__title {
+    font-size: 2rem;
+  }
+  .main-navigation__logo-container {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 1420px) {
+  .main-navigation__menu-btn {
+    display: none;
+  }
+
+  .main-navigation__header-nav {
+    display: block;
+  }
+
+  .main-navigation__title {
+    font-size: 2rem;
+  }
+  .main-navigation__logo-container {
+    width: 100px;
+    height: 100px;
+  }
+}

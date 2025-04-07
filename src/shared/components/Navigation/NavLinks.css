@@ -1,0 +1,163 @@
+/* Osnovni stilovi navigacije */
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-links li {
+  margin: 1rem;
+}
+
+.nav-links a {
+  border-bottom: 2px solid transparent;
+  color: #001f3f;
+  text-decoration: none;
+  padding: 0.5rem;
+  display: flex;
+}
+
+.nav-links a:hover,
+.nav-links a:active,
+.nav-links a.active {
+  border-color: #001f3f;
+  color: #001f3f;
+}
+
+/* Ikone za login i logout */
+.icon {
+  cursor: pointer;
+}
+
+.icon a:hover,
+.icon a:active,
+.icon a.active {
+  border-color: #bdbcbc;
+}
+
+.icon svg {
+  color: #001f3f;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icon:hover svg {
+  transform: scale(1.2);
+}
+
+/* Stilovi za gumb */
+.nav-links button {
+  cursor: pointer;
+  border: 1px solid white;
+  color: #001f3f;
+  background: transparent;
+  padding: 0.5rem;
+  font: inherit;
+}
+
+.nav-links button:focus {
+  outline: none;
+}
+
+/* Responsive navigacija */
+@media (min-width: 768px) {
+  .nav-links {
+    flex-direction: row;
+  }
+
+  .nav-links li {
+    margin: 0 0.5rem;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+  }
+
+  .nav-links button {
+    border: 2px solid #001f3f;
+    border-radius: 10px;
+    color: #001f3f;
+    background: transparent;
+  }
+
+  .nav-links button:hover,
+  .nav-links button:active {
+    background: #001f3f;
+    color: white;
+  }
+}
+
+/* Dropdown stilovi */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background: transparent;
+  border: 2px solid #001f3f;
+  border-radius: 10px;
+  color: #001f3f;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.dropdown-toggle:hover {
+  background: #001f3f;
+  color: white;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  /* border: 1px solid #ddd; */
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 140px;
+  z-index: 1000;
+}
+
+.dropdown-menu li {
+  list-style: none;
+  margin: 0;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #001f3f;
+  /* transition: background 0.3s; */
+}
+
+.dropdown-menu a:hover {
+  background: #001f3f;
+  color: white;
+  border-radius: 5px;
+}
+
+/* Prikaz dropdown menija kada je otvoren */
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown submenu */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
