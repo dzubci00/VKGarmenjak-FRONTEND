@@ -24,6 +24,11 @@ html {
   background-color: var(--background-color);
 }
 
+main {
+  background-color: #949494;
+  height: 100vh;
+}
+
 body {
   margin: 0 auto;
   font-size: 1rem;
