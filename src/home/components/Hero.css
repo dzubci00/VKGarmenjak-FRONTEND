@@ -1,7 +1,7 @@
 .homepage {
   position: relative;
   width: 100%;
-  /*  height: 100vh; */
+  height: 800px;
   background: url("/public/images/hero1.svg") center/cover no-repeat;
   /* background-size: 100%; */ /* Početna veličina */
   display: flex;
@@ -27,7 +27,7 @@
 }
 
 .text h1 {
-  color: #bdbcbc;
+  /* color: #bdbcbc; */
   font-size: 2rem;
   margin-bottom: 10px;
 }
