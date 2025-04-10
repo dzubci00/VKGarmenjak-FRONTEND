@@ -8,11 +8,9 @@ const positionOrder = ["Napadač", "Bek", "Centar", "Golman"];
 const UsersList = (props) => {
   if (props.items.length === 0) {
     return (
-      <div className="center">
-        <Card>
-          <h2>Ne postoje igrači.</h2>
-        </Card>
-      </div>
+      <p className="center-users" style={{ textAlign: "center" }}>
+        Nema dostupnih igrača.
+      </p>
     );
   }
 

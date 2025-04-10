@@ -35,6 +35,16 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #ddd;
 }
+.team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.team-logo {
+  width: 30px;
+  height: 30px;
+}
 
 /* 📱 Tableti */
 @media (min-width: 768px) {

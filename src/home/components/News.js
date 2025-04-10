@@ -36,7 +36,7 @@ const News = () => {
         <section className="latest-news">
           <h3 style={{ textAlign: "center" }}>Najnovije vijesti</h3>
           {news.length === 0 ? (
-            <p>Nema dostupnih vijesti.</p>
+            <p style={{ textAlign: "center" }}>Nema dostupnih vijesti.</p>
           ) : (
             <ul>
               {news.map((item, index) => (

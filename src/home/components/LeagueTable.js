@@ -22,6 +22,7 @@ const LeagueTable = ({ tournaments }) => {
         teamsMap.set(teamId._id, {
           _id: teamId._id,
           teamName: teamId.teamName,
+          image: teamId.image,
           pointsPerTournament: Array(tournaments.length).fill(0), // Prazan niz za bodove
         });
       }
@@ -90,7 +91,16 @@ const LeagueTable = ({ tournaments }) => {
                         ? "🥉"
                         : `${team.position}.`}
                     </TableCell>
-                    <TableCell>{team.teamName}</TableCell>
+                    <TableCell>
+                      <div className="team">
+                        <img
+                          className="team-logo"
+                          src={`${process.env.REACT_APP_ASSET_URL}/${team.image}`}
+                          alt={team.teamName}
+                        />
+                        {team.teamName}
+                      </div>
+                    </TableCell>
                     {team.pointsPerTournament.map((points, i) => (
                       <TableCell key={i}>
                         {points === 0 ? "-" : points}

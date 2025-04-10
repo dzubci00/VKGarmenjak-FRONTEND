@@ -247,7 +247,9 @@ const Training = () => {
               </form>
             )}
             {trainings.length < 1 ? (
-              <h3>Nema otvorenih treninga</h3>
+              <p className="center-users" style={{ textAlign: "center" }}>
+                Nema dostupnih treninga
+              </p>
             ) : (
               <h3>Popis Treninga</h3>
             )}
