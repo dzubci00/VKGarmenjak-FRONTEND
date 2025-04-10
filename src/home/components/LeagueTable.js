@@ -95,7 +95,12 @@ const LeagueTable = ({ tournaments }) => {
                       <div className="team">
                         <img
                           className="team-logo"
-                          src={`${process.env.REACT_APP_ASSET_URL}/${team.image}`}
+                          src={`${
+                            process.env.REACT_APP_ASSET_URL ===
+                            "http://localhost:5000/"
+                              ? process.env.REACT_APP_ASSET_URL
+                              : ""
+                          }${team.image}`}
                           alt={team.teamName}
                         />
                         {team.teamName}
