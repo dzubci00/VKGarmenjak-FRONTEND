@@ -4,29 +4,31 @@ import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import LeagueTable from "../../home/components/LeagueTable";
+import Footer from "../../shared/components/footer/Footer";
 import "./ValLeague.css";
 
 const ValLeague = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [games, setGames] = useState([]);
   const [teams, setTeams] = useState([]);
-
   const [tournaments, setTournaments] = useState([]);
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tournamentsData = await sendRequest(
-          process.env.REACT_APP_BACKEND_URL + `/games`
-        );
-        setGames(tournamentsData.tournaments);
-
         const tournaments = await sendRequest(
           process.env.REACT_APP_BACKEND_URL + `/tournaments`
         );
 
         setTournaments(tournaments.tournaments);
+
+        if (tournaments.length > 0) {
+          const tournamentsData = await sendRequest(
+            process.env.REACT_APP_BACKEND_URL + `/games`
+          );
+          setGames(tournamentsData.tournaments);
+        }
 
         const players = await sendRequest(
           process.env.REACT_APP_BACKEND_URL + `/users`
@@ -54,13 +56,15 @@ const ValLeague = () => {
         </div>
       )}
       {!isLoading && games && teams && tournaments && players && teams && (
-        <div className="val-league-wrapper">
-          {games && games.length > 0 && <Results games={games} />}
-
-          {tournaments && tournaments.length > 0 && (
-            <LeagueTable tournaments={tournaments} />
-          )}
-        </div>
+        <>
+          <div className="val-league-wrapper">
+            {games && games.length > 0 && <Results games={games} />}
+            {tournaments && tournaments.length > 0 && (
+              <LeagueTable tournaments={tournaments} />
+            )}
+          </div>
+          <Footer></Footer>
+        </>
       )}
     </>
   );

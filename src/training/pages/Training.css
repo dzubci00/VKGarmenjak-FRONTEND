@@ -5,10 +5,15 @@
   background-repeat: no-repeat;
   background-color: #666666;
   /* height: 100vh; */
-  padding-top: 3.5rem;
+  padding-top: 4rem;
   min-height: 100vh;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
+.training-item__content {
+  margin: 0px !important;
+}
 .training-container {
   max-width: 600px;
   margin: auto;
@@ -39,8 +44,8 @@
   margin-bottom: 20px;
 }
 
-.content {
-  /*  margin-bottom: 10px; */
+.add-training-wrapper {
+  margin-bottom: 2rem;
 }
 
 .prijavljeni-igraci-ul {

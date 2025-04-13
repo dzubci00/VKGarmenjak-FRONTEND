@@ -24,28 +24,24 @@
   display: block;
   width: 3rem;
   height: 2.5px;
-  background: #001f3f;
+  background: #020147;
 }
 
 .main-navigation__menu-btn svg {
-  color: #001f3f;
+  color: #020147;
 }
 
 .main-navigation__title {
   /* display: none; */
   font-size: 1.1rem;
-  background: linear-gradient(
-    to right,
-    #001f3f,
-    #378baf
-  ); /* Tamno plava → Bijela */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* background: linear-gradient(to right, #020147, #378baf); */
+  /*  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
 }
 
 .main-navigation__title a {
   text-decoration: none;
-  color: #001f3f;
+  color: #020147;
 }
 
 /* .title-logo{

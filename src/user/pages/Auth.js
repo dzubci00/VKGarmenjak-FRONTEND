@@ -174,8 +174,8 @@ const Auth = () => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <ToastContainer />
+      {isLoading && <LoadingSpinner asOverlay />}
       <Card className="authentication">
-        {isLoading && <LoadingSpinner asOverlay />}
         <h3>Potrebna je prijava</h3>
         <hr />
         <form onSubmit={authSubmitHandler}>

@@ -17,7 +17,7 @@
 
 .nav-links a {
   border-bottom: 2px solid transparent;
-  color: #001f3f;
+  color: #020147;
   text-decoration: none;
   padding: 0.5rem;
   display: flex;
@@ -26,8 +26,8 @@
 .nav-links a:hover,
 .nav-links a:active,
 .nav-links a.active {
-  border-color: #001f3f;
-  color: #001f3f;
+  border-color: #020147;
+  color: #020147;
 }
 
 /* Ikone za login i logout */
@@ -42,7 +42,7 @@
 }
 
 .icon svg {
-  color: #001f3f;
+  color: #020147;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -54,7 +54,7 @@
 .nav-links button {
   cursor: pointer;
   border: 1px solid white;
-  color: #001f3f;
+  color: #020147;
   background: transparent;
   padding: 0.5rem;
   font: inherit;
@@ -79,15 +79,15 @@
   }
 
   .nav-links button {
-    border: 2px solid #001f3f;
+    border: 2px solid #020147;
     border-radius: 10px;
-    color: #001f3f;
+    color: #020147;
     background: transparent;
   }
 
   .nav-links button:hover,
   .nav-links button:active {
-    background: #001f3f;
+    background: #020147;
     color: white;
   }
 }
@@ -100,9 +100,9 @@
 
 .dropdown-toggle {
   background: transparent;
-  border: 2px solid #001f3f;
+  border: 2px solid #020147;
   border-radius: 10px;
-  color: #001f3f;
+  color: #020147;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
@@ -110,7 +110,7 @@
 }
 
 .dropdown-toggle:hover {
-  background: #001f3f;
+  background: #020147;
   color: white;
 }
 
@@ -136,12 +136,12 @@
   display: block;
   padding: 10px 15px;
   text-decoration: none;
-  color: #001f3f;
+  color: #020147;
   /* transition: background 0.3s; */
 }
 
 .dropdown-menu a:hover {
-  background: #001f3f;
+  background: #020147;
   color: white;
   border-radius: 5px;
 }

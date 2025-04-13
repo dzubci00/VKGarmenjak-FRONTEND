@@ -13,6 +13,7 @@ import FeaturedPlayers from "../components/FeaturedPlayers";
 const Home = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [tournaments, setTournaments] = useState([]);
+  const [news, setLoadedNews] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +22,12 @@ const Home = () => {
           process.env.REACT_APP_BACKEND_URL + "/tournaments"
         );
         setTournaments(tableData.tournaments);
+
+        const responseData = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + "/news"
+        );
+
+        setLoadedNews(responseData.news);
       } catch (err) {}
     };
     fetchData();
@@ -34,11 +41,11 @@ const Home = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && tournaments && (
+      {!isLoading && tournaments && news && (
         <div className="body">
           <Hero />
           <div className="home-wrapper">
-            <News />
+            <News news={news} />
             <FeaturedPlayers></FeaturedPlayers>
             <LeagueTable tournaments={tournaments} />
           </div>
