@@ -10,7 +10,6 @@ import Button from "../../shared/components/FormElements/Button";
 import Card from "../../shared/components/UIElements/Card";
 import Modal from "../../shared/components/UIElements/Modal";
 import { formatDate } from "../../shared/util/dateUtils";
-import AddTraining from "../components/AddTraining";
 
 const Training = () => {
   const auth = useContext(AuthContext);
@@ -32,32 +31,6 @@ const Training = () => {
   useEffect(() => {
     fetchTrainings();
   }, [sendRequest]);
-
-  const handleSaveTraining = async (trainingData) => {
-    try {
-      await sendRequest(
-        process.env.REACT_APP_BACKEND_URL + "/trainings/add-training",
-        "POST",
-        JSON.stringify(trainingData),
-        {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.token}`,
-        }
-      );
-      await fetchTrainings();
-
-      toast.success("Uspješno ste dodali trening!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-    } catch (err) {
-      console.error("Greška prilikom spremanja treninga:", err);
-    }
-  };
 
   const showDeleteWarningHandler = (trainingId) => {
     setSelectedTrainingId(trainingId);
@@ -147,11 +120,11 @@ const Training = () => {
       {!isLoading && trainings && (
         <div className="wrap-training">
           <div className="training-container">
-            {auth.isAdmin && (
+            {/*  {auth.isAdmin && (
               <div className="add-training-wrapper">
                 <AddTraining onSubmit={handleSaveTraining} />
               </div>
-            )}
+            )} */}
             {trainings.length < 1 ? (
               <p className="center-users" style={{ textAlign: "center" }}>
                 Nema dostupnih treninga

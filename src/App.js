@@ -31,6 +31,9 @@ const Tournaments = React.lazy(() => import("./admin/pages/Tournaments"));
 const Games = React.lazy(() => import("./admin/pages/Games"));
 const Membership = React.lazy(() => import("./admin/pages/Membership"));
 const AddUserByAdmin = React.lazy(() => import("./admin/pages/AddUserByAdmin"));
+const AddTrainingByAdmin = React.lazy(() =>
+  import("./admin/pages/AddTrainingByAdmin")
+);
 
 const App = () => {
   const { token, login, logout, userId, isAdmin } = useAuth();
@@ -69,6 +72,9 @@ const App = () => {
         </Route>
         <Route path="/admin/statistics" exact>
           <Users />
+        </Route>
+        <Route path="/admin/trainings" exact>
+          <AddTrainingByAdmin />
         </Route>
         <Route path="/admin/settings" exact>
           <Users />

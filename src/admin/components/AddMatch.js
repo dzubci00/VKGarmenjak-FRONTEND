@@ -16,13 +16,16 @@ const AddMatchForm = ({ tournaments, players, onSubmit }) => {
   const { handleSubmit, control, reset, watch, formState } = useForm({
     mode: "onChange", // Enables live validation
   });
-  const { isValid } = formState; // Access form validity
+  const { isValid } = formState;
   const [playerStats, setPlayerStats] = useState([]);
   const [availableTeams, setAvailableTeams] = useState([]);
 
   const selectedTournamentId = watch("tournament");
   const homeTeam = watch("homeTeam");
   const awayTeam = watch("awayTeam");
+
+  const homeTeamObj = availableTeams.find((team) => team.id === homeTeam);
+  const awayTeamObj = availableTeams.find((team) => team.id === awayTeam);
 
   // Kada se promeni turnir, ažuriramo dostupne ekipe
   useEffect(() => {
@@ -40,42 +43,36 @@ const AddMatchForm = ({ tournaments, players, onSubmit }) => {
     }
   }, [selectedTournamentId, tournaments]);
 
-  // Dodaj igrača u statistiku
   const addPlayerStat = () => {
     setPlayerStats([...playerStats, { playerId: "", goals: 0, assists: 0 }]);
-    console.log(playerStats);
   };
 
-  // Ažuriraj statistiku određenog igrača
   const updatePlayerStat = (index, key, value) => {
     const newStats = [...playerStats];
     newStats[index][key] = value;
     setPlayerStats(newStats);
-    console.log(playerStats);
   };
 
-  // Ukloni igrača iz statistike
   const removePlayerStat = (index) => {
     setPlayerStats(playerStats.filter((_, i) => i !== index));
   };
 
-  // Kada se forma pošalje
   const onSubmitForm = (data) => {
-    const homeTeamObj = availableTeams.find(
+    const homeTeamFull = availableTeams.find(
       (team) => team.id === data.homeTeam
     );
-    const awayTeamObj = availableTeams.find(
+    const awayTeamFull = availableTeams.find(
       (team) => team.id === data.awayTeam
     );
 
     const newMatch = {
       ...data,
-      homeTeam: homeTeamObj ? homeTeamObj.teamName : data.homeTeam,
-      awayTeam: awayTeamObj ? awayTeamObj.teamName : data.awayTeam,
+      homeTeam: homeTeamFull ? homeTeamFull.teamName : data.homeTeam,
+      awayTeam: awayTeamFull ? awayTeamFull.teamName : data.awayTeam,
       playerStats,
     };
 
-    onSubmit(newMatch); // Šaljemo backendu
+    onSubmit(newMatch);
     reset();
     setPlayerStats([]);
   };
@@ -173,15 +170,17 @@ const AddMatchForm = ({ tournaments, players, onSubmit }) => {
           )}
         />
 
-        {/* Dodavanje statistike igrača */}
+        {/* Statistika igrača */}
         <Typography variant="h6" gutterBottom style={{ marginTop: 20 }}>
           Statistika igrača
         </Typography>
         {playerStats.map((stat, index) => (
           <div className="statistika-igraca" key={index}>
             <FormControl style={{ minWidth: 120 }}>
-              <InputLabel>Igrač</InputLabel>
+              <InputLabel id={`player-label-${index}`}>Igrač</InputLabel>
               <Select
+                labelId={`player-label-${index}`}
+                id={`player-select-${index}`}
                 value={stat.playerId}
                 onChange={(e) =>
                   updatePlayerStat(index, "playerId", e.target.value)
@@ -228,17 +227,14 @@ const AddMatchForm = ({ tournaments, players, onSubmit }) => {
             </Button>
           </div>
         ))}
+
+        {/* Dugmići */}
         <div className="dugmici" style={{ marginLeft: 0 }}>
-          {homeTeam === "67db0619e9f9582132f91ae8" ||
-          awayTeam === "67db0619e9f9582132f91ae8" ? (
-            <>
-              {" "}
-              <Button player type="button" onClick={addPlayerStat}>
-                Dodaj igrača
-              </Button>
-            </>
-          ) : (
-            <></>
+          {(homeTeamObj?.teamName === "VK Garmenjak" ||
+            awayTeamObj?.teamName === "VK Garmenjak") && (
+            <Button player type="button" onClick={addPlayerStat}>
+              Dodaj igrača
+            </Button>
           )}
 
           <Button

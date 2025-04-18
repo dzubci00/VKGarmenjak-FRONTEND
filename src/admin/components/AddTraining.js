@@ -24,7 +24,7 @@ const AddTraining = ({ onSubmit }) => {
   };
 
   return (
-    <Paper className="training-paper" sx={{ padding: 2, margin: "0 auto" }}>
+    <Paper sx={{ padding: 2, margin: "0 auto" }}>
       <Typography variant="h6" gutterBottom>
         Dodaj trening
       </Typography>

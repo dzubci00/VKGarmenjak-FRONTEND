@@ -21,7 +21,12 @@ const News = ({ news }) => {
               >
                 <div className="image-container">
                   <LazyLoadImage
-                    src={`${process.env.REACT_APP_ASSET_URL}/${item.image}`}
+                    src={`${
+                      process.env.REACT_APP_ASSET_URL ===
+                      "http://localhost:5000"
+                        ? process.env.REACT_APP_ASSET_URL + "/"
+                        : ""
+                    }${item.image}`}
                     alt={item.title}
                     effect="blur"
                     width="100%"

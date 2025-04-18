@@ -62,8 +62,9 @@ const NavLinks = () => {
           {isDropdownOpen && (
             <ul className="dropdown-menu">
               <li onClick={() => setDropdownOpen(false)}>
-                <NavLink to="/admin/players">👤 Korisnici</NavLink>
+                <NavLink to="/admin/trainings">🏊 Treninzi</NavLink>
               </li>
+
               <li onClick={() => setDropdownOpen(false)}>
                 <NavLink to="/admin/membership">💳 Članarine</NavLink>
               </li>
@@ -72,6 +73,9 @@ const NavLinks = () => {
               </li>
               <li onClick={() => setDropdownOpen(false)}>
                 <NavLink to="/admin/matches">⚽ Utakmice</NavLink>
+              </li>
+              <li onClick={() => setDropdownOpen(false)}>
+                <NavLink to="/admin/players">👤 Korisnici</NavLink>
               </li>
               {/*  <li onClick={() => setDropdownOpen(false)}>
                 <NavLink to="/admin/statistics">📊 Statistika</NavLink>
