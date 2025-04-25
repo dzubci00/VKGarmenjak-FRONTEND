@@ -69,7 +69,7 @@ const Tournaments = () => {
       {!isLoading && tournaments && (
         <div className="admin-tournament-wrapper">
           {auth.isAdmin && (
-            <div className="admin-panel-tournaments">
+            <div className="admin-panel-tournament">
               <AddTournament teams={teams} onSubmit={handleSaveTournament} />
             </div>
           )}

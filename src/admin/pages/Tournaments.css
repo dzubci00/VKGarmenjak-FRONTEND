@@ -11,10 +11,9 @@
   padding-top: 4rem;
 }
 
-.admin-panel-tournaments {
+.admin-panel-tournament {
   width: 90%;
   gap: 20px;
-  display: flex;
   align-items: flex-start;
   flex-direction: column;
 }
@@ -25,6 +24,7 @@
 
 /* 🖥️ Desktop */
 @media (min-width: 992px) {
-  .admin-panel {
+  .admin-tournament-wrapper {
+    padding-top: 6rem;
   }
 }

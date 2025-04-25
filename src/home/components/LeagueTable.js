@@ -61,7 +61,9 @@ const LeagueTable = ({ tournaments }) => {
             <Table sx={{ minWidth: 650 }}>
               <TableHead>
                 <TableRow sx={{ backgroundColor: "#D7D7D7" }}>
-                  <TableCell sx={{ color: "white", maxWidth: "10px" }}>
+                  <TableCell
+                    sx={{ color: "white", width: "30px", align: "center" }}
+                  >
                     Poredak
                   </TableCell>
                   <TableCell sx={{ color: "white" }} align="center">
@@ -84,7 +86,7 @@ const LeagueTable = ({ tournaments }) => {
               <TableBody>
                 {rankedTeams.map((team) => (
                   <TableRow key={team._id}>
-                    <TableCell sx={{ maxWidth: "10px" }}>
+                    <TableCell sx={{ maxWidth: "10px", textAlign: "center" }}>
                       {team.position === 1
                         ? "🥇"
                         : team.position === 2

@@ -2,7 +2,6 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { TextField, Paper, Typography } from "@mui/material";
 import Button from "../../shared/components/FormElements/Button";
-import "./AddTraining.css";
 
 const AddTraining = ({ onSubmit }) => {
   const today = new Date().toISOString().split("T")[0];
@@ -24,7 +23,7 @@ const AddTraining = ({ onSubmit }) => {
   };
 
   return (
-    <Paper sx={{ padding: 2, margin: "0 auto" }}>
+    <Paper sx={{ padding: 2, maxWidth: 500, margin: "0 auto" }}>
       <Typography variant="h6" gutterBottom>
         Dodaj trening
       </Typography>

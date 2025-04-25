@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { AuthContext } from "../../shared/context/auth-context";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
@@ -18,19 +18,49 @@ const Training = () => {
   const [trainings, setTrainings] = useState([]);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [selectedTrainingId, setSelectedTrainingId] = useState(null);
+  const [expandedTrainings, setExpandedTrainings] = useState([]);
 
-  const fetchTrainings = async () => {
+  const isTrainingInPast = (date, time) => {
+    // Izvuci samo datum (YYYY-MM-DD) iz ISO stringa
+    const dateOnly = new Date(date).toISOString().split("T")[0];
+
+    // Parsiraj komponente
+    const [year, month, day] = dateOnly.split("-");
+    const [hours, minutes] = time.split(":");
+
+    const trainingDateTime = new Date(year, month - 1, day, hours, minutes);
+
+    return new Date() > trainingDateTime;
+  };
+
+  const getTrainingStatusEmoji = (date, time) => {
+    const dateOnly = new Date(date).toISOString().split("T")[0];
+    const [year, month, day] = dateOnly.split("-");
+    const [hours, minutes] = time.split(":");
+
+    const trainingDateTime = new Date(year, month - 1, day, hours, minutes);
+    const now = new Date();
+    const diffInMs = trainingDateTime - now;
+    var diffInMinutes = diffInMs / (1000 * 60);
+    diffInMinutes = diffInMinutes * -1;
+
+    if (diffInMinutes >= 90) return "✅ Odrađen";
+    if (diffInMinutes <= 60 && diffInMinutes >= 0) return "⏳ U tijeku";
+    return "🕒 Uskoro";
+  };
+
+  const fetchTrainings = useCallback(async () => {
     try {
       const responseData = await sendRequest(
         process.env.REACT_APP_BACKEND_URL + "/trainings"
       );
       setTrainings(responseData.trainings);
     } catch (err) {}
-  };
+  }, [sendRequest]);
 
   useEffect(() => {
     fetchTrainings();
-  }, [sendRequest]);
+  }, [fetchTrainings]);
 
   const showDeleteWarningHandler = (trainingId) => {
     setSelectedTrainingId(trainingId);
@@ -107,6 +137,14 @@ const Training = () => {
     } catch (err) {}
   };
 
+  const toggleTrainingExpansion = (trainingId) => {
+    setExpandedTrainings((prevExpanded) =>
+      prevExpanded.includes(trainingId)
+        ? prevExpanded.filter((id) => id !== trainingId)
+        : [...prevExpanded, trainingId]
+    );
+  };
+
   return (
     <>
       <ErrorModal error={error} onClear={clearError} />
@@ -120,11 +158,6 @@ const Training = () => {
       {!isLoading && trainings && (
         <div className="wrap-training">
           <div className="training-container">
-            {/*  {auth.isAdmin && (
-              <div className="add-training-wrapper">
-                <AddTraining onSubmit={handleSaveTraining} />
-              </div>
-            )} */}
             {trainings.length < 1 ? (
               <p className="center-users" style={{ textAlign: "center" }}>
                 Nema dostupnih treninga
@@ -134,56 +167,71 @@ const Training = () => {
             )}
 
             <ul className="training-list">
-              {trainings.map((training) => (
-                <li className="training-li" key={training.id}>
-                  <Card className="training-item__content">
-                    <div className="content">
-                      <p>
-                        <strong>Datum:</strong> {formatDate(training.date)}
-                      </p>
-                      <p>
-                        <strong>Vrijeme:</strong> {training.time}
-                      </p>
-                      <p>
-                        <strong>Lokacija:</strong> {training.location}
-                      </p>
-                      <p>
-                        <strong>Tip:</strong> {training.trainingType}
-                      </p>
+              {trainings.map((training) => {
+                const isSignedUp = training.players.some(
+                  (player) =>
+                    player.playerId && player.playerId._id === auth.userId
+                );
+                const isExpanded = expandedTrainings.includes(training._id);
 
-                      {training.players.length === 0 ? (
-                        <h4 style={{ marginTop: "15px" }}>
-                          Nema prijavljenih igrača
-                        </h4>
-                      ) : (
-                        <>
-                          <h4 style={{ marginTop: "15px" }}>
+                return (
+                  <li className="training-li" key={training.id}>
+                    <Card className="training-item__content">
+                      <p>
+                        {getTrainingStatusEmoji(training.date, training.time)}
+                      </p>
+                      <div className="content">
+                        <p>
+                          <strong>Datum:</strong> {formatDate(training.date)}
+                        </p>
+                        <p>
+                          <strong>Vrijeme:</strong> {training.time}
+                        </p>
+                        <p>
+                          <strong>Lokacija:</strong> {training.location}
+                        </p>
+                        <p>
+                          <strong>Tip:</strong> {training.trainingType}
+                        </p>
+                        {training.players.length === 0 ? (
+                          <h4>Nema prijavljenih igrača</h4>
+                        ) : (
+                          <h4
+                            onClick={() =>
+                              toggleTrainingExpansion(training._id)
+                            }
+                            style={{ marginTop: "15px", cursor: "pointer" }}
+                          >
                             Prijavljeni igrači ({training.players.length})
                           </h4>
-                          <ul className="prijavljeni-igraci-ul">
-                            {training.players.map((player, index) => (
-                              <li
-                                className="prijavljeni-igraci-li"
-                                key={player._id || index}
-                              >
-                                <Card className="player-list-item__content">
-                                  {player.playerId
-                                    ? `${player.playerId.name} ${player.playerId.surname}`
-                                    : "Nepoznati igrač"}
-                                </Card>
-                              </li>
-                            ))}
-                          </ul>
-                        </>
-                      )}
-                    </div>
+                        )}
+                        {isExpanded &&
+                          (training.players.length === 0 ? (
+                            <p style={{ marginTop: "10px" }}>-</p>
+                          ) : (
+                            <ul className="prijavljeni-igraci-ul">
+                              {training.players.map((player, index) => (
+                                <li
+                                  className="prijavljeni-igraci-li"
+                                  key={player._id || index}
+                                >
+                                  <Card className="player-list-item__content">
+                                    {player.playerId
+                                      ? `${player.playerId.name} ${player.playerId.surname}`
+                                      : "Nepoznati igrač"}
+                                  </Card>
+                                </li>
+                              ))}
+                            </ul>
+                          ))}
+                      </div>
 
-                    {auth.isLoggedIn &&
-                      !training.players.some(
-                        (player) =>
-                          player.playerId && player.playerId._id === auth.userId
-                      ) && (
+                      {auth.isLoggedIn && !isSignedUp && (
                         <Button
+                          disabled={isTrainingInPast(
+                            training.date,
+                            training.time
+                          )}
                           size="small"
                           onClick={() => signUpHandler(training._id)}
                         >
@@ -191,12 +239,12 @@ const Training = () => {
                         </Button>
                       )}
 
-                    {auth.isLoggedIn &&
-                      training.players.some(
-                        (player) =>
-                          player.playerId && player.playerId._id === auth.userId
-                      ) && (
+                      {auth.isLoggedIn && isSignedUp && (
                         <Button
+                          disabled={isTrainingInPast(
+                            training.date,
+                            training.time
+                          )}
                           danger
                           size="small"
                           onClick={() => cancelTrainingHandler(training._id)}
@@ -205,24 +253,24 @@ const Training = () => {
                         </Button>
                       )}
 
-                    {auth.isLoggedIn && auth.isAdmin && (
-                      <Button
-                        danger
-                        size="small"
-                        onClick={() => showDeleteWarningHandler(training._id)}
-                      >
-                        Izbriši
-                      </Button>
-                    )}
-                  </Card>
-                </li>
-              ))}
+                      {auth.isLoggedIn && auth.isAdmin && (
+                        <Button
+                          danger
+                          size="small"
+                          onClick={() => showDeleteWarningHandler(training._id)}
+                        >
+                          Izbriši
+                        </Button>
+                      )}
+                    </Card>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
       )}
 
-      {/* Modal prikazan izvan mape */}
       <Modal
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}

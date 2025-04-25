@@ -44,9 +44,13 @@ const News = ({ news }) => {
                       ? item.content.substring(0, 180) + "..."
                       : item.content}
                   </p>
-                  <a href={`/news/${item.id}`} className="read-more">
-                    Pročitaj više
-                  </a>
+                  {item.content.length > 180 ? (
+                    <a href={`/news/${item.id}`} className="read-more">
+                      Pročitaj više
+                    </a>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </li>
             ))}

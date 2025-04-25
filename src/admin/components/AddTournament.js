@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import Button from "../../shared/components/FormElements/Button";
-import "./AddTournament.css";
 
 const AddTournament = ({ teams, onSubmit }) => {
   const { handleSubmit, control, reset, watch, formState } = useForm({

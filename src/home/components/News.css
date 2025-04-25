@@ -80,6 +80,9 @@
 
 @media (min-width: 768px) {
   .latest-news {
+    width: 70%;
+  }
+  /* .latest-news {
     width: 100%;
   }
   .latest-news ul {
@@ -90,14 +93,14 @@
 
   .latest-news li {
     margin-bottom: 0;
-  }
+  } */
 }
 
 @media (min-width: 1424px) {
   .latest-news {
-    width: 90%;
+    width: 50%;
   }
-
+  /* 
   .latest-news ul {
     display: flex;
     flex-direction: row;
@@ -120,5 +123,5 @@
 
   .content-container {
     width: 60%;
-  }
+  } */
 }

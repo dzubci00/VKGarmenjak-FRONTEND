@@ -36,6 +36,9 @@
 .training-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .training-li {
@@ -68,4 +71,18 @@ h4 {
 .training-container h2 {
   color: #020659;
   margin-bottom: 0px;
+}
+
+/* 📱 Tableti */
+@media (min-width: 768px) {
+  .training-list {
+    gap: 20px;
+  }
+}
+
+/* 🖥️ Desktop */
+@media (min-width: 992px) {
+  .training-list {
+    gap: 30px;
+  }
 }

@@ -25,6 +25,7 @@
 
 /* 🖥️ Desktop */
 @media (min-width: 992px) {
-  .admin-panel {
+  .admin-training-wrapper {
+    padding-top: 6rem;
   }
 }
