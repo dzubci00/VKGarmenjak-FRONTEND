@@ -11,6 +11,8 @@ import Card from "../../shared/components/UIElements/Card";
 import Modal from "../../shared/components/UIElements/Modal";
 import { formatDate } from "../../shared/util/dateUtils";
 
+// ...importi ostaju isti
+
 const Training = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -20,33 +22,19 @@ const Training = () => {
   const [selectedTrainingId, setSelectedTrainingId] = useState(null);
   const [expandedTrainings, setExpandedTrainings] = useState([]);
 
-  const isTrainingInPast = (date, time) => {
-    // Izvuci samo datum (YYYY-MM-DD) iz ISO stringa
-    const dateOnly = new Date(date).toISOString().split("T")[0];
+  const getTrainingStatus = (dateStr, timeStr) => {
+    const date = new Date(dateStr);
+    const [hours, minutes] = timeStr.split(":").map(Number);
 
-    // Parsiraj komponente
-    const [year, month, day] = dateOnly.split("-");
-    const [hours, minutes] = time.split(":");
+    const start = new Date(date);
+    start.setHours(hours, minutes, 0, 0);
 
-    const trainingDateTime = new Date(year, month - 1, day, hours, minutes);
-
-    return new Date() > trainingDateTime;
-  };
-
-  const getTrainingStatusEmoji = (date, time) => {
-    const dateOnly = new Date(date).toISOString().split("T")[0];
-    const [year, month, day] = dateOnly.split("-");
-    const [hours, minutes] = time.split(":");
-
-    const trainingDateTime = new Date(year, month - 1, day, hours, minutes);
     const now = new Date();
-    const diffInMs = trainingDateTime - now;
-    var diffInMinutes = diffInMs / (1000 * 60);
-    diffInMinutes = diffInMinutes * -1;
+    const end = new Date(start.getTime() + 90 * 60000); // +1h30m
 
-    if (diffInMinutes >= 90) return "✅ Odrađen";
-    if (diffInMinutes <= 60 && diffInMinutes >= 0) return "⏳ U tijeku";
-    return "🕒 Uskoro";
+    if (now < start) return "A"; // Aktivan
+    if (now >= start && now <= end) return "UT"; // U tijeku
+    return "Z"; // Završeno
   };
 
   const fetchTrainings = useCallback(async () => {
@@ -84,14 +72,7 @@ const Training = () => {
       );
       await fetchTrainings();
 
-      toast.success("Uspješno ste izbrisali trening!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.success("Uspješno ste izbrisali trening!");
     } catch (err) {}
   };
 
@@ -105,14 +86,7 @@ const Training = () => {
       );
       await fetchTrainings();
 
-      toast.success("Uspješno ste se prijavili na trening!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.success("Uspješno ste se prijavili na trening!");
     } catch (err) {}
   };
 
@@ -126,14 +100,7 @@ const Training = () => {
       );
       await fetchTrainings();
 
-      toast.success("Uspješno ste otkazali dolazak na trening!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      toast.success("Uspješno ste otkazali dolazak na trening!");
     } catch (err) {}
   };
 
@@ -173,13 +140,18 @@ const Training = () => {
                     player.playerId && player.playerId._id === auth.userId
                 );
                 const isExpanded = expandedTrainings.includes(training._id);
+                const status = getTrainingStatus(training.date, training.time);
+
+                const statusLabel = {
+                  A: "🕒 Uskoro",
+                  UT: "⏳ U tijeku",
+                  Z: "✅ Odrađen",
+                }[status];
 
                 return (
                   <li className="training-li" key={training.id}>
                     <Card className="training-item__content">
-                      <p>
-                        {getTrainingStatusEmoji(training.date, training.time)}
-                      </p>
+                      <p>{statusLabel}</p>
                       <div className="content">
                         <p>
                           <strong>Datum:</strong> {formatDate(training.date)}
@@ -228,10 +200,7 @@ const Training = () => {
 
                       {auth.isLoggedIn && !isSignedUp && (
                         <Button
-                          disabled={isTrainingInPast(
-                            training.date,
-                            training.time
-                          )}
+                          disabled={status === "Z" || status === "UT"}
                           size="small"
                           onClick={() => signUpHandler(training._id)}
                         >
@@ -241,10 +210,7 @@ const Training = () => {
 
                       {auth.isLoggedIn && isSignedUp && (
                         <Button
-                          disabled={isTrainingInPast(
-                            training.date,
-                            training.time
-                          )}
+                          disabled={status === "Z" || status === "UT"}
                           danger
                           size="small"
                           onClick={() => cancelTrainingHandler(training._id)}

@@ -50,13 +50,14 @@ const Profile = ({
       );
     }
 
-    // Provjera prijava na treninge
     if (trainings.length > 0) {
       const unregisteredTrainings = trainings.filter((t) => {
         const isUserRegistered = t.players.some(
           (player) => player.playerId._id === id
         );
-        return !isUserRegistered;
+
+        // Uključi samo treninge sa statusom "A" (aktivan)
+        return t.status === "A" && !isUserRegistered;
       });
 
       if (unregisteredTrainings.length > 0) {
